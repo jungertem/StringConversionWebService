@@ -1,0 +1,99 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>DecoderEncodeClient</title>
+    <script src="../Scripts/jquery-3.4.1.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            $(":button").click(function (event) {
+
+                var textValue = $("#inputField").val();
+                var textArg = "textValue=" + encodeURIComponent(textValue);
+                var control = event.target || event.srcElement;
+                var id = control.id
+
+                var urlString = "/api/Decoder/";
+
+                switch (id) {
+                    case 'bottonDecodeXml':
+                        urlString += "DecodeXml/?" + textArg;
+                        break;
+                    case 'bottonEncodeXml':
+                        urlString += "EncodeXml/?" + textArg;
+                        break;
+                    case 'bottonEscapeJSon':
+                        urlString += "EscapeJSON/?" + textArg;
+                        break;
+                    case 'bottonUnescapeJSon':
+                        urlString += "UnEscapeJSON/?" + textArg;
+                        break;
+                    default:
+                        urlString = (urlString + "hello");
+                }
+
+                $.ajax({
+                    url: urlString,
+                    type: "GET",
+                    dataType: 'json',
+                    success: function (result) {
+                        $("#outputField").val(result);
+                    }
+                });
+            });
+
+        });
+    </script>
+
+
+</head>
+
+
+<body>
+    <p style="text-align:center">
+        <span style="color:#1abc9c">
+            <span style="font-size:26px">
+                <span style="background-color:#ffffff">ENCODER-DECODER</span>
+            </span>
+        </span>
+    </p>
+
+    <hr />
+    <p style="text-align:center">
+        <span style="font-family:Times New Roman,Times,serif">
+            <span style="font-size:20px">Input Field (XML or JSON)</span>
+        </span>
+    </p>
+
+    <p style="text-align:center">
+        <textarea cols="80" id="inputField" required="required" rows="5"></textarea>
+    </p>
+
+    <hr />
+    <p style="text-align:center">
+        <span style="font-size:20px">JSON OPERATIONS:</span>&nbsp;&nbsp;
+        <span style="font-size:11px">
+            <input type="button" id="bottonEscapeJSon" value="Escape" />
+        </span>&nbsp; &nbsp;&nbsp;
+        <input type="button" id="bottonUnescapeJSon" value="Unescape" />
+    </p>
+
+    <p style="text-align:center">
+        <span style="font-size:20px">XML OPERATIONS:</span>&nbsp;
+        <input type="button" id="bottonDecodeXml" value="Decode" />&nbsp; &nbsp;&nbsp;
+        <input type="button" id="bottonEncodeXml" value="Encode" />
+    </p>
+
+    <hr />
+    <p style="text-align:center">
+        <span style="font-size:20px">Output Field</span>
+    </p>
+
+    <p style="text-align:center">
+        <textarea cols="80" id="outputField" rows="5"></textarea>
+    </p>
+
+    <hr />
+    <p>&nbsp;</p>
+</body>
+</html>
