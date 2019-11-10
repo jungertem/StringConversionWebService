@@ -91,9 +91,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\DecoderController.cs" />
-    <Compile Include="Models\XMLOperations.cs" />
-    <Compile Include="Models\JSONOperations.cs" />
+    <Compile Include="Controllers\ConvertionController.cs" />
+    <Compile Include="ConvertionLogic\XMLOperations.cs" />
+    <Compile Include="ConvertionLogic\JSONOperations.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -112,6 +112,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Models\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
