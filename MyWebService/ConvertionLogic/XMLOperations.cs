@@ -20,7 +20,7 @@ namespace MyWebService.Controllers
             temporary.Replace("\"", "&quot;");
             temporary.Replace("'", "&apos;");
 
-            // replacing all non-ascii characters from temporary string;
+            // detecting and replacing all non-ascii characters from temporary string;
             string asciiLine = Regex.Replace(temporary.ToString(), @"[^\u0000-\u007F]", val => "&#" + ((int)char.Parse(val.Value)).ToString() + ";");
 
             return asciiLine;
